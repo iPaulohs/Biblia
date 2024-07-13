@@ -4,7 +4,6 @@ import { open } from "sqlite";
 import { v4 as uuidv4 } from "uuid";
 
 async function main() {
-
   let biblia = [
     ["genesis", 50, "Genesis"],
     ["exodo", 40, "Exodo"],
@@ -81,19 +80,16 @@ async function main() {
     ["apocalipse", 22, "Apocalipse"],
   ];
 
-  
   const db = await open({
     filename: 'biblia.db',
     driver: sqlite3.Database
   });
 
   await db.exec(`
-
     CREATE TABLE IF NOT EXISTS Livro (
       Id TEXT PRIMARY KEY,
       Titulo TEXT NOT NULL,
-      Capitulo INTEGER NOT NULL,
-      FOREIGN KEY(BibliaId) REFERENCES Biblia(Id)
+      Capitulo INTEGER NOT NULL
     );
 
     CREATE TABLE IF NOT EXISTS Versiculo (
